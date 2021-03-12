@@ -50,6 +50,8 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<PlayerController>().CollectHelth(-10);
+            other.GetComponent<Over>().luz = true;
+            StartCoroutine(StarAnimation(other.gameObject));
             return;
         }
         
@@ -62,5 +64,11 @@ public class Enemy : MonoBehaviour
 
         faceRight = !faceRight;
 
+    }
+
+    IEnumerator StarAnimation(GameObject other)
+    {
+        yield return new WaitForSeconds(1);
+        other.GetComponent<Over>().luz = false;
     }
 }

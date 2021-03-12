@@ -111,17 +111,15 @@ public class PlayerController : MonoBehaviour
 
     void Jump(bool superJump)
     {
-        float jumpForceFactor = jumpForce; 
-        if (superJump && manaPoints >= SUPERJUMP_COST)
-        {
-            manaPoints -= SUPERJUMP_COST;
-            jumpForceFactor *= SUPERJUMP_FORCE;
-        }
-        
         if(IsTouchingTheGround())
         {
+            float jumpForceFactor = jumpForce; 
+            if (superJump && manaPoints >= SUPERJUMP_COST)
+            {
+                manaPoints -= SUPERJUMP_COST;
+                jumpForceFactor *= SUPERJUMP_FORCE;
+            }
             _rigidbody2D.AddForce(Vector2.up * jumpForceFactor, ForceMode2D.Impulse);
-            
         }
     }
 
